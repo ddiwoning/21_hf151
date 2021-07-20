@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.IUserMapper">
+
+	<!-- Detail 페이지에 직원 정보 가져오기 매퍼 -->
+	<select id="getEmpListInfo" resultType="UserDTO">
+		SELECT 
+			EMPNO,
+			ENAME,
+			RANK,
+			PHONE,
+			EMAIL,
+			ADRESS
+		FROM
+			hanium.EMP_LIST
+	</select>
+
+	<!-- 유저 정보 찾아서 비밀번호 변경하기 -->
+	<update id="updateUserPwdInfo" parameterType="UserDTO">
+		UPDATE 
+			USER_INFO
+		SET 
+			PWD=#{pwd}
+		WHERE 
+			id = #{id}
+	
+	</update>
+
+	<!-- 유저 정보 찾기 이메일 -->
+	<select id="getFindUserInfo" resultType="UserDTO">
+		SELECT
+			ID
+		FROM 
+			USER_INFO
+		WHERE 
+			id=#{id}
+	</select>
+
+	<!-- 아작스로 로그인 확인 -->
+	<select id="getEmailCheck" resultType="UserDTO">
+		SELECT 
+			ID
+		FROM
+			USER_INFO
+		WHERE
+			id=#{id}
+	</select>
+
+	<!-- 아이디 비밀번호  -->
+<select id="getLoginInfo" resultType="UserDTO">
+	SELECT 
+		ID, 
+		PWD, 
+		NAME 
+	FROM 
+		USER_INFO
+	WHERE 
+		ID=#{id} AND PWD=#{pwd}
+</select>
+
+<select id="kakaoLoginForDgService" resultType="KakaoDTO">
+	SELECT  
+		ID, 
+		PWD, 
+		NAME 
+	FROM 
+		USER_INFO
+	WHERE 
+		ID=#{kakaoMail}
+</select>
+
+<insert id="UserRegInfo" parameterType="UserRegDTO">
+	INSERT 
+	       INTO USER_INFO (
+	       NAME,
+	       ID, 
+	       PWD,
+	       GENDER,
+	       BIRTH
+	       )
+	VALUES(
+		#{name},
+		#{id},
+		#{pwd}, 
+		#{gender},
+		#{birth}
+	)
+	
+</insert>
+
+<!-- 아작스로 이메일 확인 -->
+	<select id="getregEmailCheck" resultType="UserRegDTO">
+		SELECT 
+			ID
+		FROM
+			USER_INFO
+		WHERE
+			ID=#{id}
+	</select>
+
+</mapper>

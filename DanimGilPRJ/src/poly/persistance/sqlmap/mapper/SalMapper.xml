@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.ISalMapper">
+<!-- select resulty 타입 안하면 반환 안댐 -->
+
+
+<!-- 퇴근 시간 및 작업 시간 업데이트-->
+	<update id="updateOffTime_workTime" parameterType="SalDTO">
+		UPDATE
+			EMP_SAL_TABLE
+		SET
+			OFF_TIME=#{off_time},
+			WORK_TIME=#{work_time}
+		WHERE
+			REG_DT=#{reg_dt} AND EMPNO=#{empno}
+	</update>
+
+<!-- getAttTime 출근한 직원 정보 가져오기 -->
+	<select id="getAttTime" parameterType="SalDTO" resultType="SalDTO">
+		SELECT 
+			EMPNO,
+			ATT_TIME
+		FROM
+			EMP_SAL_TABLE
+		WHERE
+			ATT_TIME IS NOT NULL
+	</select>
+
+<!-- 출근 정보 삽입을 위한 쿼리-->
+	<insert id = "insertAttTime" parameterType="SalDTO">
+		INSERT INTO hanium.EMP_SAL_TABLE(
+			REG_DT,
+			ATT_NO,
+			EMPNO,
+			ATT_TIME
+		) 
+		VALUES(
+			#{reg_dt},
+			(SELECT IFNULL(MAX(A.ATT_NO),0)+1 FROM hanium.EMP_SAL_TABLE A WHERE A.REG_DT = #{reg_dt}),
+			#{empno},
+			#{att_time}
+		)
+	</insert>
+
+<!-- 출근 일자와 회원정보 복합키로 출근 중복 체크 -->
+	<select id="attExists" parameterType="SalDTO" resultType="salDTO">
+		SELECT 
+			IF(COUNT(1), 'Y','N') AS EXISTS_YN
+		FROM 
+			EMP_SAL_TABLE
+		WHERE
+			REG_DT=#{reg_dt} AND EMPNO=#{empno};
+	</select>
+<!--플라스크로 empno를 보내기 위한 셀렉트-->
+	<select id="getEmpno"  parameterType="EmpDTO" resultType="EmpDTO">
+		SELECT 
+			EMPNO
+		FROM 
+			EMP_LIST
+	</select>
+<!--Current  창에 일일 급여 현황 보여주는 창 -->
+	<select id="getCurrentEmpInfo"  parameterType="SalDTO" resultType="SalDTO">
+		SELECT 
+			a.EMPNO, 
+			a.ENAME, 
+			b.RANK, 
+			b.SALARY, 
+			a.ATT_TIME, 
+			a.OFF_TIME, 
+			c.WORK_TIME * b.SALARY AS DAILY_SAL
+		FROM 
+			EMP_LIST a, SAL_TABLE b, EMP_SAL_TABLE c
+		WHERE 
+			a.EMPNO=c.EMPNO AND a.RANK=b.RANK AND c.REG_DT=#{reg_dt}
+	</select>
+
+</mapper>

@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 700;
+  font-style: normal;
+  /* src: url('../fonts/notosanskr/eot/NotoSansKR-Bold-Hestia.eot'); */
+  src: 
+  url("../fonts/notosanskr/woff/NotoSansKR-Bold-Hestia.woff") format("woff"),
+  url("../fonts/notosanskr/eot/NotoSansKR-Bold-Hestia.ttf") format("truetype"), 
+  url("../fonts/notosanskr/eot/NotoSansKR-Bold-Hestia.svg#NotoSansKR-Bold-Hestia") format("svg");
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 500;
+  font-style: normal;
+  /*  src: url('../fonts/notosanskr/eot/NotoSansKR-Medium-Hestia.eot'); */
+  src: 
+  url("../fonts/notosanskr/woff/NotoSansKR-Medium-Hestia.woff") format("woff"), 
+  url("../fonts/notosanskr/eot/NotoSansKR-Medium-Hestia.ttf") format("truetype"), 
+  url("../fonts/notosanskr/eot/NotoSansKR-Medium-Hestia.svg#NotoSansKR-Medium-Hestia") format("svg");
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 400;
+  font-style: normal;
+  /* src: url('../fonts/notosanskr/eot/NotoSansKR-Regular-Hestia.eot'); */
+  src: 
+  url("../fonts/notosanskr/woff/NotoSansKR-Regular-Hestia.woff") format("woff"), 
+  url("../fonts/notosanskr/eot/NotoSansKR-Regular-Hestia.ttf") format("truetype"), 
+  url("../fonts/notosanskr/eot/NotoSansKR-Regular-Hestia.svg#NotoSansKR-Regular-Hestia") format("svg");
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 300;
+  font-style: normal;
+  /*  src: url('../fonts/notosanskr/eot/NotoSansKR-Light-Hestia.eot'); */
+  src: 
+  url("../fonts/notosanskr/woff/NotoSansKR-Light-Hestia.woff") format("woff"), 
+  url("../fonts/notosanskr/eot/NotoSansKR-Light-Hestia.ttf") format("truetype"), 
+  url("../fonts/notosanskr/eot/NotoSansKR-Light-Hestia.svg#NotoSansKR-Light-Hestia") format("svg");
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 100;
+  font-style: normal;
+  /*  src: url('../fonts/notosanskr/eot/NotoSansKR-Thin-Hestia.eot'); */
+  src: 
+  url("../fonts/notosanskr/woff/NotoSansKR-Thin-Hestia.woff") format("woff"), 
+  url("../fonts/notosanskr/eot/NotoSansKR-Thin-Hestia.ttf") format("truetype"), 
+  url("../fonts/notosanskr/eot/NotoSansKR-Thin-Hestia.svg#NotoSansKR-Thin-Hestia") format("svg");
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.IEmpMapper">
+
+	<!-- 직원 정보 등록-->
+	<insert id="addEmpInfo" parameterType="EmpDTO">
+		INSERT INTO
+			hanium.EMP_LIST(
+				EMPNO,
+				ENAME,
+				RANK,
+				PHONE,
+				EMAIL,
+				ADRESS,
+				ATT_TIME,
+				OFF_TIME
+			)
+			VALUES(
+				#{empno},
+				#{ename},
+				#{rank},
+				#{phone},
+				#{email},
+				#{adress},
+				#{att_time},
+				#{off_time}
+			)
+
+	</insert>
+	<!-- 직원 정보 중복 찾기-->
+	<select id="getCheckEmpno" resultType="EmpDTO">
+		SELECT 
+			EMPNO
+		FROM
+			hanium.EMP_LIST
+		WHERE
+			EMPNO=#{empno}
+	</select>
+	<!-- Detail 페이지에 직원 정보 가져오기 매퍼 -->
+	<select id="getEmpListInfo" resultType="EmpDTO">
+		SELECT 
+			EMPNO,
+			ENAME,
+			RANK,
+			PHONE,
+			EMAIL,
+			ADRESS,
+			ATT_TIME,
+			OFF_TIME
+		FROM
+			hanium.EMP_LIST
+	</select>
+
+</mapper>
